@@ -1,15 +1,15 @@
 import SwiftUI
 
-struct CommonTextView: View {
+struct NormalTextView: View {
     var text: String
     var body: some View {
         Text(text)
-            .font(.footnote)
+            .font(.callout)
             .fontWeight(.medium)
             .foregroundColor(Color("commonTextColor"))
     }
 }
 
 #Preview {
-    CommonTextView(text: "Sample Text")
+    NormalTextView(text: "Sample text")
 }
