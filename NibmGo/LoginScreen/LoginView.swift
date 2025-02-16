@@ -15,11 +15,6 @@ struct LoginView: View {
                     .frame(maxWidth: .infinity)
                     .background(Color("inputBackground"))
                     .cornerRadius(15)
-                TextField("Password", text: $universityEmail)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color("inputBackground"))
-                    .cornerRadius(15)
                 Button {
                     print("Sign In button clicked")
                 } label: {
