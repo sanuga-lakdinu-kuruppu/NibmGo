@@ -16,7 +16,6 @@ struct LoginView: View {
                     .background(Color("inputBackground"))
                     .cornerRadius(15)
 
-                SecondaryTextView(text: "Forget Password")
 
                 Button {
                     print("Sign In button clicked")
