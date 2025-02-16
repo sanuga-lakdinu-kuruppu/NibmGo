@@ -7,10 +7,7 @@ struct SplashView: View {
             Image("logo")
             VStack {
                 Spacer()
-                CommonTextView(
-                    text:
-                        "All Rights Reserved"
-                )
+                FootnoteTextView(text: "All Rights Reserved")
             }
             .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
         }
