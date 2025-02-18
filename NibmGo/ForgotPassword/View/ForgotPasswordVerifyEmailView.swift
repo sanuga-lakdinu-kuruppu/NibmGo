@@ -1,13 +1,7 @@
-//
-//  ForgotPasswordVerifyEmailView.swift
-//  NibmGo
-//
-//  Created by Sachin Gunawardena on 2025-02-18.
-//
-
 import SwiftUI
 
 struct ForgotPasswordVerifyEmailView: View {
+    @EnvironmentObject var globalRouter: NavigationRouter
     @State var universityEmail: String = ""
 
     var body: some View {
@@ -17,13 +11,14 @@ struct ForgotPasswordVerifyEmailView: View {
                 Image("ForgotPasswordEmailVerify")
                 HeadingTextView(text: "Forgot Password")
                     .padding(.top, 16)
-                NormalTextView(text: "Don't worry! Please enter your university email.")
+                NormalTextView(
+                    text: "Don't worry! Please enter your university email."
+                )
 
                 CommonTextInputView(
                     hint: "University Email",
                     text: $universityEmail
                 )
-
 
                 Button {
                     print("Verify Email For Forgot Password Clicked")
