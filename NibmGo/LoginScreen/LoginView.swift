@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct LoginView: View {
+    @EnvironmentObject var globalRouter: NavigationRouter
     @State var universityEmail: String = ""
     @State var password: String = ""
 
@@ -18,13 +19,15 @@ struct LoginView: View {
                     text: $universityEmail
                 )
 
-                CommonPasswordInputView(hint: "Password", password: $password)
+                CommonPasswordInputView(
+                    hint: "Password", password: $password)
 
                 HStack {
                     Spacer()
                     HyperLinkTextView(text: "Forgot password?")
                         .onTapGesture {
-                            print("Forgot password clicked ?")
+                            globalRouter.pathOutside
+                                .append("ForgotPasswordVerifyEmail")
                         }
                 }
 
@@ -62,9 +65,10 @@ struct LoginView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
 #Preview {
-    LoginView()
+    LoginView().environmentObject(NavigationRouter())
 }
