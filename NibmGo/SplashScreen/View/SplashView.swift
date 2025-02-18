@@ -1,31 +1,26 @@
 import SwiftUI
 
 struct SplashView: View {
-    @State var isLoginNavigation: Bool = false
+    @EnvironmentObject var globalRouter: NavigationRouter
     var body: some View {
-        NavigationStack {
-            ZStack {
-                CommonBackgroundView()
-                Image("logo")
-                VStack {
-                    Spacer()
-                    FootnoteTextView(text: "All Rights Reserved")
-                }
-                .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
+        ZStack {
+            CommonBackgroundView()
+            Image("logo")
+            VStack {
+                Spacer()
+                FootnoteTextView(text: "All Rights Reserved")
             }
-            .navigationDestination(isPresented: $isLoginNavigation) {
-                LoginView()
-                    .navigationBarBackButtonHidden(true)
-            }
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    self.isLoginNavigation.toggle()
-                }
+            .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
+        }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                globalRouter.pathOutside.append("Login")
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
 #Preview {
-    SplashView()
+    SplashView().environmentObject(NavigationRouter())
 }
