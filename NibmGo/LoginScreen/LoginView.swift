@@ -12,7 +12,10 @@ struct LoginView: View {
                 Image("logo")
                 HeadingTextView(text: "Sign In")
                     .padding(.top, 16)
-                NormalTextView(text: "Access to your account")
+                NormalTextView(
+                    text: "Access to your account",
+                    multilineTextAlignment: .center
+                )
 
                 CommonTextInputView(
                     hint: "University Email",
@@ -27,7 +30,9 @@ struct LoginView: View {
                     HyperLinkTextView(text: "Forgot password?")
                         .onTapGesture {
                             globalRouter.pathOutside
-                                .append("ForgotPasswordVerifyEmail")
+                                .append(
+                                    Route.forgotPasswordVerifyEmail.rawValue
+                                )
                         }
                 }
 

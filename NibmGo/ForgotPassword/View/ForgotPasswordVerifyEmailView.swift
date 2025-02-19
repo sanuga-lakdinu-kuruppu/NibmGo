@@ -8,11 +8,12 @@ struct ForgotPasswordVerifyEmailView: View {
         ZStack {
             CommonBackgroundView()
             VStack(spacing: 16) {
-                Image("ForgotPasswordEmailVerify")
+                Image("forgotPasswordEmailVerify")
                 HeadingTextView(text: "Forgot Password")
                     .padding(.top, 16)
                 NormalTextView(
-                    text: "Don't worry! Please enter your university email."
+                    text: "Don't worry! Please enter your university email.",
+                    multilineTextAlignment: .center
                 )
 
                 CommonTextInputView(
@@ -21,7 +22,10 @@ struct ForgotPasswordVerifyEmailView: View {
                 )
 
                 Button {
-                    print("Verify Email For Forgot Password Clicked")
+                    globalRouter.commingFrom =
+                        Route.forgotPasswordVerifyEmail.rawValue
+                    globalRouter.pathOutside.append(
+                        Route.otpVerification.rawValue)
                 } label: {
                     CommonButtonView(
                         buttonText: "Verify Email",
@@ -37,5 +41,6 @@ struct ForgotPasswordVerifyEmailView: View {
 }
 
 #Preview {
-    ForgotPasswordVerifyEmailView()
+    ForgotPasswordVerifyEmailView().environmentObject(NavigationRouter())
 }
+
