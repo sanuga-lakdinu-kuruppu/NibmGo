@@ -1,0 +1,9 @@
+import SwiftUI
+
+enum Route: String {
+    case login = "Login"
+    case forgotPasswordVerifyEmail = "ForgotPasswordVerifyEmail"
+    case otpVerification = "OtpVerification"
+    case registration = "Registration"
+    case forgotPasswordResetPassword = "ForgotPasswordResetPassword"
+}
