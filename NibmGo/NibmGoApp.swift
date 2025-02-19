@@ -8,10 +8,19 @@ struct NibmGoApp: App {
             NavigationStack(path: $globalRouter.pathOutside) {
                 SplashView()
                     .navigationDestination(for: String.self) { destination in
-                        if destination == "Login" {
+                        if destination == Route.login.rawValue {
                             LoginView()
-                        } else if destination == "ForgotPasswordVerifyEmail" {
+                        } else if destination
+                            == Route.forgotPasswordVerifyEmail.rawValue
+                        {
                             ForgotPasswordVerifyEmailView()
+                        } else if destination == Route.otpVerification.rawValue
+                        {
+                            OtpVerificationView()
+                        } else if destination
+                            == Route.forgotPasswordResetPassword.rawValue
+                        {
+                            ResetPasswordView()
                         }
                     }
             }
