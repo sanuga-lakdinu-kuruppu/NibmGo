@@ -4,6 +4,8 @@ struct OtpVerificationView: View {
     @EnvironmentObject var globalRouter: NavigationRouter
     @State var otp: [String] = Array(repeating: "", count: 4)
     @FocusState var focusedIndex: Int?
+    @State var timer: Timer? = nil
+    @State var timerValue: Int = 0
 
     var body: some View {
         ZStack {
@@ -54,11 +56,40 @@ struct OtpVerificationView: View {
                     )
                 }
                 HStack {
-                    NormalTextView(text: "Request code again in ")
+                    NormalTextView(text: "Request code again in")
+                    if timerValue > 0 {
+                        HighlightedTextView(text: "\(timerValue) s")
+                    } else {
+                        HyperLinkTextView(text: "retry")
+                            .onTapGesture {
+                                startTimer()
+                            }
+                    }
+
                 }
             }
             .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
         }
+        .onAppear {
+            startTimer()
+        }
+    }
+
+    func startTimer() {
+        timerValue = timerValue != 0 ? timerValue : 120
+        timer =
+            Timer
+            .scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+                if timerValue > 0 {
+                    timerValue -= 1
+                } else {
+                    stopTimer()
+                }
+            }
+    }
+
+    func stopTimer() {
+        timer?.invalidate()
     }
 }
 
