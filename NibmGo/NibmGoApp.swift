@@ -21,6 +21,10 @@ struct NibmGoApp: App {
                             == Route.forgotPasswordResetPassword.rawValue
                         {
                             ResetPasswordView()
+                        } else if destination
+                            == Route.home.rawValue
+                        {
+                            TabLandingView()
                         }
                     }
             }

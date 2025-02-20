@@ -38,6 +38,10 @@ struct LoginView: View {
 
                 Button {
                     print("Sign In button clicked")
+                    globalRouter.pathOutside
+                        .append(
+                            Route.home.rawValue
+                        )
                 } label: {
                     CommonButtonView(
                         buttonText: "Sign In",

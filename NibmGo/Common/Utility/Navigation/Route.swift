@@ -6,4 +6,5 @@ enum Route: String {
     case otpVerification = "OtpVerification"
     case registration = "Registration"
     case forgotPasswordResetPassword = "ForgotPasswordResetPassword"
+    case home = "Home"
 }
