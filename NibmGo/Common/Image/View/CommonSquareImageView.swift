@@ -2,13 +2,14 @@ import SwiftUI
 
 struct CommonSquareImageView: View {
     var url: String
+    let imageSize = UIScreen.main.bounds.width / 2.3
     var body: some View {
         AsyncImage(url: URL(string: url)) { phase in
             if let image = phase.image {
                 image
                     .resizable()
-                    .scaledToFill()
-                    .frame(height: 100)
+                    .aspectRatio(1, contentMode: .fill)
+                    .frame(width: imageSize, height: imageSize)
                     .clipShape(
                         RoundedRectangle(
                             cornerRadius: 15)
@@ -16,7 +17,7 @@ struct CommonSquareImageView: View {
                     .clipped()
             } else {
                 ProgressView()
-                    .frame(height: 100)
+                    .frame(width: imageSize, height: imageSize)
             }
         }
     }
