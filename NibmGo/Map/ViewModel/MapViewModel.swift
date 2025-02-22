@@ -10,68 +10,55 @@ class MapViewModel {
         //network call
         let facilities = [
             FacilityModel(
-                facilityId: 1, name: "Vehicle Parking", type: .parking,
-                longitude: 79.870737,
-                latitude: 6.906206,
-                address: "Ground Fl, Main Building",
+                facilityId: 1, name: "California Hall", type: .lectureHall,
+                longitude: -122.26032259113008,
+                latitude: 37.87185385379638,
+                address: "University of California, Berkeley.",
                 imageUrls: [
-                    "https://images.unsplash.com/photo-1470224114660-3f6686c562eb?q=80&w=2782&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    "https://images.unsplash.com/photo-1562426509-5044a121aa49?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "https://dac.berkeley.edu/sites/default/files/styles/panopoly_image_spotlight/public/california-building-1_0.jpg?itok=gWM_ZgCh",
+                    "https://www.usgbc.org/sites/default/files/2020-10/bcjcalifornia_hall2433.jpg",
+                    "https://upload.wikimedia.org/wikipedia/commons/3/3c/California_Hall.JPG",
+                    "https://www.bcj.com/wp-content/uploads/2020/10/BCJ-California_Hall-2322a_medium.jpg",
+                    "https://www.ucdavis.edu/sites/default/files/news/campus-news/2018/dec/califhall5-filling-up-925.jpg",
+                    "https://dac.berkeley.edu/sites/default/files/styles/panopoly_image_spotlight/public/buildings-1_0/buildings-1/California-Building.jpg?itok=EOU4Q-j7",
                 ], availability: .available, crowdLevel: .moderate),
             FacilityModel(
-                facilityId: 2, name: "Cafeteria", type: .cafeteria,
-                longitude: 79.870623,
-                latitude: 6.906643, address: "2nd Fl, Main Building",
+                facilityId: 2, name: "Doe Library", type: .library,
+                longitude: -122.25924194010149,
+                latitude: 37.87226759580837,
+                address: "University of California, Berkeley.",
                 imageUrls: [
-                    "https://images.unsplash.com/photo-1588075592672-2c05a193357f?q=80&w=2944&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    "https://images.unsplash.com/photo-1600506385349-75c83336e2b6?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2894&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    "https://images.unsplash.com/photo-1493857671505-72967e2e2760?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    "https://images.unsplash.com/photo-1516197227520-4d1c419f6ec6?q=80&w=2573&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyeBiCFRcYidhNIuAIGIqX8isJjHA2SGc_zw&s",
+                    "https://www.lib.berkeley.edu/sites/default/files/inline-images/doehours-00835.jpg",
+                    "https://life.berkeley.edu/wp-content/uploads/2024/10/north_room-Editedjpg.jpg",
+                    "https://storage.googleapis.com/campaign-identity/images/LanguageHero_iqyLsU9.2e16d0ba.fill-960x500_uj4qtW2.jpg",
+                ], availability: .available, crowdLevel: .high),
+            FacilityModel(
+                facilityId: 3, name: "Durant Hall", type: .lectureHall,
+                longitude: -122.26010024695167,
+                latitude: 37.87135715736398,
+                address: "University of California, Berkeley.",
+                imageUrls: [
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMTZoJbZTSUJmwbMzbXKQlIQKe9Bl9-Q_62w&s",
+                    "https://live.staticflickr.com/1940/44744299815_671f0bfa9e_b.jpg",
+                    "https://newsarchive.berkeley.edu/news/media/releases/2008/10/images/durant.jpg",
+                    "https://www.architecturalrecord.com/ext/resources/archives/projects/Building_types_study/universities/2011/images/Durant-Hall-4.jpg",
+                    "https://www.architecturalrecord.com/ext/resources/archives/projects/Building_types_study/universities/2011/images/Durant-Hall-1.jpg?t=1453816081&width=696",
                 ], availability: .unavailable, crowdLevel: .high),
             FacilityModel(
-                facilityId: 3, name: "Main Library", type: .library,
-                longitude: 79.870731,
-                latitude: 6.906422, address: "1st Fl, Main Building",
+                facilityId: 4, name: "Edwards Stadium", type: .stadium,
+                longitude: -122.26486417157663,
+                latitude: 37.86906470198154,
+                address: "University of California, Berkeley.",
                 imageUrls: [
-                    "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    "https://images.unsplash.com/photo-1600431521340-491eca880813?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                ], availability: .available, crowdLevel: .high),
-            FacilityModel(
-                facilityId: 4, name: "Lec 01", type: .lectureHall,
-                longitude: 79.8709634257161,
-                latitude: 6.906332846129008, address: "3rd Fl, Main Building",
-                imageUrls: [
-                    "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?q=80&w=2763&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                ], availability: .available, crowdLevel: .high),
-            FacilityModel(
-                facilityId: 4, name: "Lec 02", type: .lectureHall,
-                longitude: 79.87083046853927,
-                latitude: 6.906216588475643, address: "3rd Fl, Main Building",
-                imageUrls: [
-                    "https://images.unsplash.com/photo-1492538368677-f6e0afe31dcc?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    "https://images.unsplash.com/photo-1559223607-a43c990c692c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                ], availability: .unavailable, crowdLevel: .low),
-            FacilityModel(
-                facilityId: 4, name: "Lec 03", type: .lectureHall,
-                longitude: 79.87072873243261,
-                latitude: 6.906394089306229,
-                address: "Ground Fl, Main Building", availability: .available,
-                crowdLevel: .moderate
-            ),
-            FacilityModel(
-                facilityId: 4, name: "Lec 04", type: .lectureHall,
-                longitude: 79.87088497110419,
-                latitude: 6.9063288520084765,
-                address: "1st Fl, Main Building", availability: .available,
-                crowdLevel: .low),
+                    "https://s3-media0.fl.yelpcdn.com/bphoto/ktJbq4vZrBjgWHYy9b_RSg/348s.jpg",
+                    "https://arc-anglerfish-arc2-prod-sltrib.s3.amazonaws.com/public/FIJTRG6RI5AGZEQ3SBZK5D7CYE.jpg",
+                ], availability: .available, crowdLevel: .low),
+
         ]
         let mapColomboNIBM = MapModel(
             mapId: 1,
-            name: "NIBM Colombo",
+            name: "University of California",
             facilities: facilities
         )
         return mapColomboNIBM
