@@ -41,7 +41,7 @@ struct OtpVerificationView: View {
                         == Route.forgotPasswordVerifyEmail.rawValue
                     {
                         print("Comming from forgot password \(otp.joined())")
-                        globalRouter.pathOutside
+                        globalRouter.paths
                             .append(Route.forgotPasswordResetPassword.rawValue)
                     } else if globalRouter.commingFrom
                         == Route.registration.rawValue

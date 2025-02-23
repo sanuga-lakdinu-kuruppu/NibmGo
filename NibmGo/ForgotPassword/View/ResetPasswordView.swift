@@ -22,7 +22,7 @@ struct ResetPasswordView: View {
                 )
 
                 Button {
-                    globalRouter.pathOutside.append(Route.login.rawValue)
+                    globalRouter.paths.append(Route.login.rawValue)
                 } label: {
                     CommonButtonView(
                         buttonText: "Reset",

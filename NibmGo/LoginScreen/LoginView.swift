@@ -29,7 +29,7 @@ struct LoginView: View {
                     Spacer()
                     HyperLinkTextView(text: "Forgot password?")
                         .onTapGesture {
-                            globalRouter.pathOutside
+                            globalRouter.paths
                                 .append(
                                     Route.forgotPasswordVerifyEmail.rawValue
                                 )
@@ -38,7 +38,7 @@ struct LoginView: View {
 
                 Button {
                     print("Sign In button clicked")
-                    globalRouter.pathOutside
+                    globalRouter.paths
                         .append(
                             Route.home.rawValue
                         )
