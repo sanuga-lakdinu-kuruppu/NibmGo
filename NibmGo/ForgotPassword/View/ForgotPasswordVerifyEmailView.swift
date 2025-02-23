@@ -24,7 +24,7 @@ struct ForgotPasswordVerifyEmailView: View {
                 Button {
                     globalRouter.commingFrom =
                         Route.forgotPasswordVerifyEmail.rawValue
-                    globalRouter.pathOutside.append(
+                    globalRouter.paths.append(
                         Route.otpVerification.rawValue)
                 } label: {
                     CommonButtonView(
@@ -43,4 +43,3 @@ struct ForgotPasswordVerifyEmailView: View {
 #Preview {
     ForgotPasswordVerifyEmailView().environmentObject(NavigationRouter())
 }
-

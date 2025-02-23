@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct TabLandingView: View {
+    @EnvironmentObject var globalRouter: NavigationRouter
     var body: some View {
         TabView {
             HomeView()
@@ -31,5 +32,5 @@ struct TabLandingView: View {
 }
 
 #Preview {
-    TabLandingView()
+    TabLandingView().environmentObject(NavigationRouter())
 }
