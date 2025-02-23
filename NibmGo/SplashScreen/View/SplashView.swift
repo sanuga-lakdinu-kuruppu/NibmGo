@@ -14,7 +14,7 @@ struct SplashView: View {
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                globalRouter.pathOutside.append(Route.login.rawValue)
+                globalRouter.paths.append(Route.login.rawValue)
             }
         }
         .navigationBarBackButtonHidden(true)
