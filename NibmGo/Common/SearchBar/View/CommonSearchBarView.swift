@@ -1,0 +1,36 @@
+import SwiftUI
+
+struct CommonSearchBarView: View {
+    @Binding var searchTerm: String
+    var hint: String
+    var body: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(Color.gray)
+            TextField(hint, text: $searchTerm)
+            if !searchTerm.isEmpty {
+                Button {
+                    searchTerm = ""
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(Color.gray)
+                }
+            }
+        }.padding(.vertical, 8)
+            .padding(.horizontal, 16)
+            .frame(maxWidth: .infinity)
+            .background(Color("inputBackground"))
+            .cornerRadius(15)
+    }
+}
+
+#Preview {
+    PreviewSearchBar()
+}
+
+struct PreviewSearchBar: View {
+    @State var temp: String = "fd"
+    var body: some View {
+        CommonSearchBarView(searchTerm: $temp, hint: "fdjsalk")
+    }
+}

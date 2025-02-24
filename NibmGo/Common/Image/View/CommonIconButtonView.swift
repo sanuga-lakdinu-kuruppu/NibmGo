@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct CommonIconButtonView: View {
-    var icon: String
+    @State var icon: String
     var body: some View {
         Image(systemName: icon)
             .resizable()
