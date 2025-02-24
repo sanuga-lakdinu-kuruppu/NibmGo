@@ -2,121 +2,93 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var globalRouter: NavigationRouter
-    @State var isAvailable = true
-    @State var selectedBranch = "Nibm - Colombo"
+    @State var selectedBranch = ""
     @State var branches = [
-        "Nibm - Colombo", "Nibm - Kandy", "Nibm - Galle",
+        "Berkely", "Miami", "San Francisco", "New York",
     ]
-    var valueColor: Color = Color("commonTextColor")
+    @State private var user: UserProfileModel = ProfileViewModel.shared
+        .getUserProfile()
 
     var body: some View {
-        VStack(spacing: 16) {
-            HStack {
-                CommonStaticListView(
-                    icon: "star.fill", titleText: "Points earned",
-                    valueText: "14,250")
-                Spacer()
-            }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(16)
-
-            HStack {
-                NormalTextView(
-                    text: "Primary Branch", foregroundColor: .black)
-                Spacer()
-                Picker("Primary Branch", selection: $selectedBranch) {
-                    ForEach(branches, id: \.self) { branch in
-                        Text(branch)
+        ZStack {
+            CommonBackgroundView()
+            ScrollView {
+                VStack(spacing: 16) {
+                    HStack {
+                        TitleTextView(text: user.shortName)
+                        Spacer()
+                        HyperLinkTextView(text: "Edit")
+                            .onTapGesture {
+                            }
                     }
-                }
-            }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(16)
+                    .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
 
-            HStack {
-                NormalTextView(
-                    text: "Availability", foregroundColor: .black)
-                Spacer()
-                Toggle("", isOn: $isAvailable)
-                    .labelsHidden()
-            }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(16)
+                    List {
+                        Section {
+                            CommonStaticListView(
+                                icon: "star.fill", titleText: "Points Earned",
+                                valueText: "\(user.points)")
+                        }
+                        Section {
+                            CommonDropDownListView(
+                                user: $user,
+                                branches: $branches,
+                                titleText: "Primary Branch"
+                            )
+                        }
 
-            VStack(spacing: 0) {
-                HStack {
-                    NormalTextView(
-                        text: "First Name", foregroundColor: .black)
+                        if user.role.rawValue == UserType.facultMember.rawValue
+                        {
+                            Section {
+                                CommonToggleListView(user: $user)
+                            }
+                        }
+
+                        Section {
+                            CommonStaticListView(
+                                icon: "", titleText: "First Name",
+                                valueText: user.firstName)
+                            CommonStaticListView(
+                                icon: "", titleText: "Last Name",
+                                valueText: user.lastName)
+                            CommonStaticListView(
+                                icon: "", titleText: "Email",
+                                valueText: user.email)
+                            CommonStaticListView(
+                                icon: "", titleText: "Joined At",
+                                valueText: user.joinedAt)
+                        }
+
+                    }
+                    .contentMargins(.vertical, 0)
+                    .frame(height: UIScreen.main.bounds.height * 0.5)
+
+                    VStack(spacing: 16) {
+                        Button {
+                        } label: {
+                            CommonButtonView(
+                                buttonText: "Reset Password",
+                                backgroundColor: Color("inputBackground"),
+                                foregroundColor: Color("brandColor")
+                            )
+                        }
+
+                        Button {
+                        } label: {
+                            CommonButtonView(
+                                buttonText: "Sign Out",
+                                backgroundColor: Color("inputBackground"),
+                                foregroundColor: Color("brandColor")
+                            )
+                        }
+                    }
+                    .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
                     Spacer()
-                    NormalTextView(text: "Himasha", foregroundColor: .gray)
-                }
-                .padding(.vertical, 8)
-                Divider()
-                HStack {
-                    NormalTextView(
-                        text: "Last Name", foregroundColor: .black)
-                    Spacer()
-                    NormalTextView(
-                        text: "Weerasooriya", foregroundColor: .gray)
-                }
-                .padding(.vertical, 8)
-                Divider()
-                HStack {
-                    NormalTextView(text: "Email", foregroundColor: .black)
-                    Spacer()
-                    NormalTextView(
-                        text: "cobsccomp232p002@student.nibm.lk",
-                        foregroundColor: .gray)
-                }
-                .padding(.vertical, 8)
-                Divider()
-                HStack {
-                    NormalTextView(
-                        text: "Joined At", foregroundColor: .black)
-                    Spacer()
-                    NormalTextView(
-                        text: "27th of February 2025",
-                        foregroundColor: .gray)
-                }
 
-                .padding(.vertical, 8)
+                }
+                .padding(.top, 32)
             }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(16)
-
-            .padding(.bottom, 16)
-            Button {
-                print("Reset Password Clicked")
-            } label: {
-                CommonButtonView(
-                    buttonText: "Reset Password",
-                    backgroundColor: Color("inputBackground"),
-                    foregroundColor: Color("brandColor")
-                )
-            }
-
-            Button {
-                print("Sign Out Clicked")
-            } label: {
-                CommonButtonView(
-                    buttonText: "Sign Out",
-                    backgroundColor: Color("inputBackground"),
-                    foregroundColor: Color("brandColor")
-                )
-            }
-            Spacer()
-
         }
-
-        .padding()
-        .background(Color(.systemGray6))
-        .navigationBarTitle("Himasha, W.", displayMode: .inline)
-        .navigationBarItems(trailing: Button("Edit") {})
-
     }
 
 }

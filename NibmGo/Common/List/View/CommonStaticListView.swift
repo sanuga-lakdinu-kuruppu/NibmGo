@@ -7,15 +7,17 @@ struct CommonStaticListView: View {
     var valueColor: Color = Color("commonTextColor")
     var body: some View {
         HStack {
-            Image(systemName: icon)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(Color("brandColor"))
-                .frame(
-                    width: UIScreen.main.bounds.width * 0.05,
-                    height: UIScreen.main.bounds.width * 0.05
-                )
-                .padding(.trailing, 8)
+            if !icon.isEmpty {
+                Image(systemName: icon)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(Color("brandColor"))
+                    .frame(
+                        width: UIScreen.main.bounds.width * 0.05,
+                        height: UIScreen.main.bounds.width * 0.05
+                    )
+                    .padding(.trailing, 8)
+            }
             NormalTextView(text: titleText, foregroundColor: .black)
             Spacer()
             NormalTextView(text: valueText, foregroundColor: valueColor)
