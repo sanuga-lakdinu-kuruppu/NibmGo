@@ -5,7 +5,7 @@ struct FacilityInDetailView: View {
 
     var body: some View {
         ScrollView {
-            if var facility = selectedFacility {
+            if let facility = selectedFacility {
                 VStack {
                     VStack {
                         ZStack {
