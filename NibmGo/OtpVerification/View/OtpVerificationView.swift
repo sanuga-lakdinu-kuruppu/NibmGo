@@ -40,13 +40,15 @@ struct OtpVerificationView: View {
                     if globalRouter.commingFrom
                         == Route.forgotPasswordVerifyEmail.rawValue
                     {
-                        print("Comming from forgot password \(otp.joined())")
                         globalRouter.paths
                             .append(Route.forgotPasswordResetPassword.rawValue)
                     } else if globalRouter.commingFrom
                         == Route.registration.rawValue
                     {
-                        print("Comming from registration")
+                        globalRouter.paths
+                            .append(
+                                Route.home.rawValue
+                            )
                     }
                 } label: {
                     CommonButtonView(
