@@ -1,6 +1,7 @@
 import SwiftUI
 
 enum AvailabilityType: String {
-    case available = "Available"
-    case unavailable = "Not Available"
+    case low = "Low"
+    case moderate = "Moderate"
+    case high = "High"
 }

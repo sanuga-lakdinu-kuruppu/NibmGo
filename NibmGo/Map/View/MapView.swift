@@ -162,35 +162,25 @@ struct MapView: View {
                         )
                     }
 
+                    AvailabilityCardView(
+                        availabilityValueInDouble: facility
+                            .availabilityInDouble,
+                        availabilityValueInString: facility.availabilityInString
+                            .rawValue
+                    )
+
+                    if let imageUrls = facility.imageUrls {
+                        ScrollView {
+                            LazyVGrid(columns: gridItems) {
+                                ForEach(imageUrls, id: \.self) { url in
+                                    CommonSquareImageView(url: url)
+                                }
+                            }
+
+                        }
+                    }
                 }
                 .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
-
-                List {
-                    CommonStaticListView(
-                        icon: "checkmark.circle.fill",
-                        titleText: "Availabity",
-                        valueText: "\(facility.availability.rawValue)")
-                    CommonStaticListView(
-                        icon: "person.fill", titleText: "Crowd Level",
-                        valueText: "\(facility.crowdLevel.rawValue)")
-                }
-                .contentMargins(.vertical, 8)
-                .frame(maxHeight: 100)
-
-                if let imageUrls = facility.imageUrls {
-                    ScrollView {
-                        LazyVGrid(columns: gridItems) {
-                            ForEach(imageUrls, id: \.self) { url in
-                                CommonSquareImageView(url: url)
-                            }
-                        }
-
-                    }.padding(
-                        .horizontal, UIScreen.main.bounds.width * 0.05
-                    )
-                }
-
-                Spacer()
             }
             .presentationDetents([.medium, .large])
             .ignoresSafeArea()
