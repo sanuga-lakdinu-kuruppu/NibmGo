@@ -9,21 +9,36 @@ struct TabLandingView: View {
                     Image(systemName: "house.fill")
                     Text("Home")
                 }
+
             MapView()
                 .tabItem {
                     Image(systemName: "map.fill")
                     Text("Map")
                 }
                 .toolbar(.hidden, for: .navigationBar)
+
             FacilityView()
                 .tabItem {
                     Image(systemName: "building.2.fill")
                     Text("Facility")
                 }
-            MoreView()
+
+            ScheduleView()
                 .tabItem {
-                    Image(systemName: "ellipsis")
-                    Text("More")
+                    Image(systemName: "calendar.badge.clock")
+                    Text("Schedule")
+                }
+
+            ContributionView()
+                .tabItem {
+                    Image(systemName: "hand.draw.fill")
+                    Text("Contribution")
+                }
+
+            ProfileView()
+                .tabItem {
+                    Image(systemName: "person.crop.circle.fill")
+                    Text("Profile")
                 }
         }
         .navigationBarBackButtonHidden(true)

@@ -27,7 +27,7 @@ struct NibmGoApp: App {
                             TabLandingView()
                         } else if destination == Route.registration.rawValue {
                             RegisterView()
-                        }
+                        } 
                     }
             }
             .accentColor(Color("brandColor"))
