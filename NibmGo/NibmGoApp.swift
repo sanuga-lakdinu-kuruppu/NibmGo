@@ -15,7 +15,7 @@ struct NibmGoApp: App {
                         {
                             ForgotPasswordVerifyEmailView()
                         } else if destination == Route.otpVerification.rawValue
-                    {
+                        {
                             OtpVerificationView()
                         } else if destination
                             == Route.forgotPasswordResetPassword.rawValue
@@ -25,6 +25,8 @@ struct NibmGoApp: App {
                             == Route.home.rawValue
                         {
                             TabLandingView()
+                        } else if destination == Route.registration.rawValue {
+                            RegisterView()
                         }
                     }
             }
