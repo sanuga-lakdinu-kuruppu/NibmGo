@@ -1,10 +1,21 @@
+import Charts
 import SwiftUI
 
 struct FacilityView: View {
     @State var isShowingIndetails: Bool = false
     @State var selectedFacility: FacilityModel?
-    @State var facilites: [FacilityModel] = FacilityViewModel.shared
-        .getAllFacilities()
+    private var filteredFacilities: [FacilityModel] {
+        let allFacilities = FacilityViewModel.shared.getAllFacilities()
+        if searchTerm.isEmpty {
+            return allFacilities
+        } else {
+            return
+                allFacilities
+                .filter { $0.name.localizedCaseInsensitiveContains(searchTerm) }
+        }
+    }
+    @State var searchTerm = ""
+
     var body: some View {
         ZStack {
             CommonBackgroundView()
@@ -16,11 +27,30 @@ struct FacilityView: View {
                     }
                     .padding(.top, 32)
 
+                    CommonSearchBarView(
+                        searchTerm: $searchTerm, hint: "Search facilities")
+
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(filteredFacilities) { facility in
+                                if facility.isPinned {
+                                    Button {
+                                        selectedFacility = facility
+                                    } label: {
+                                        PinnedItemButtonView(
+                                            text: facility.name)
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+
                 }
                 .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
 
                 List {
-                    ForEach(facilites, id: \.id) { facility in
+                    ForEach(filteredFacilities, id: \.id) { facility in
                         if facility.type == FacilityType.lectureHall {
                             CommonNavigationListType1View(
                                 icon: "building.fill", titleText: facility.name
@@ -46,6 +76,7 @@ struct FacilityView: View {
 
                     }
                 }
+                .padding(.top, 16)
                 .contentMargins(.vertical, 0)
 
                 Spacer()
@@ -53,69 +84,9 @@ struct FacilityView: View {
 
         }
         .sheet(item: $selectedFacility) { facility in
-            VStack {
-                VStack {
-                    ZStack {
-                        FacilityIndetailImageView(
-                            imageUrl: facility.imageUrls?.first
-                        )
-
-                        VStack {
-                            HStack {
-                                Spacer()
-                                HStack {
-                                    Button {
-                                    } label: {
-                                        CommonIconButtonView(icon: "pin.fill")
-                                    }
-                                    Button {
-                                    } label: {
-                                        CommonIconButtonView(icon: "plus")
-                                    }
-                                    Button {
-                                    } label: {
-                                        CommonIconButtonView(
-                                            icon: "square.and.arrow.up")
-                                    }
-                                    Button {
-                                        selectedFacility = nil
-                                    } label: {
-                                        CommonIconButtonView(icon: "xmark")
-                                    }
-                                }
-                            }
-                            Spacer()
-                            FacilityIndetailTitleView(
-                                name: facility.name,
-                                address: facility
-                                    .address
-                            )
-                            .padding(.bottom, 16)
-                        }
-                        .padding(.top, 16)
-                        .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
-                    }
-                }
-
-                VStack {
-                    Button {
-                        print("clicked here")
-                    } label: {
-                        CommonButtonView(
-                            buttonText: "Show Me Directions",
-                            backgroundColor: Color("inputBackground"),
-                            foregroundColor: Color("brandColor")
-                        )
-                    }
-                    Spacer()
-                }
-                .padding(.top, 16)
-                .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
-            }
-            .presentationDetents([.large])
-            .ignoresSafeArea()
-            .frame(maxWidth: .infinity)
-            .background(Color("commonBackground"))
+            FacilityInDetailView(
+                selectedFacility: $selectedFacility
+            )
         }
 
     }
