@@ -69,7 +69,10 @@ struct LoginView: View {
                     NormalTextView(text: "Not a member?")
                     HyperLinkTextView(text: "Register now")
                         .onTapGesture {
-                            print("Register now clicked?")
+                            globalRouter.paths
+                                .append(
+                                    Route.registration.rawValue
+                                )
                         }
                 }
             }
