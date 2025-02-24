@@ -24,12 +24,12 @@ struct OtpVerificationView: View {
                     ForEach(0..<4, id: \.self) { index in
                         OtpTextInputView(input: $otp[index])
                             .focused($focusedIndex, equals: index)
-                            .onChange(of: otp[index]) { newValue in
-                                if newValue.count > 1 {
-                                    otp[index] = String(newValue.prefix(1))
+                            .onChange(of: otp[index]) {
+                                if otp[index].count > 1 {
+                                    otp[index] = String(otp[index].prefix(1))
                                 }
 
-                                if !newValue.isEmpty {
+                                if !otp[index].isEmpty {
                                     focusedIndex = (index < 3) ? index + 1 : nil
                                 }
                             }
