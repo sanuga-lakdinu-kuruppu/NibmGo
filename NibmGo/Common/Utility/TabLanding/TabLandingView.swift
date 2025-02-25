@@ -29,6 +29,12 @@ struct TabLandingView: View {
                     Text("Member")
                 }
 
+            EventView()
+                .tabItem {
+                    Image(systemName: "party.popper")
+                    Text("Event")
+                }
+
             ScheduleView()
                 .tabItem {
                     Image(systemName: "calendar.badge.clock")
