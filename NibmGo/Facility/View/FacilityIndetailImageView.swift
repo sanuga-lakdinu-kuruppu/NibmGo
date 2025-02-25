@@ -2,6 +2,7 @@ import SwiftUI
 
 struct FacilityIndetailImageView: View {
     var imageUrl: String?
+    var imageSize: Double = 0.5
     var body: some View {
         AsyncImage(
             url: URL(
@@ -14,14 +15,14 @@ struct FacilityIndetailImageView: View {
                     .frame(
                         width: UIScreen.main.bounds.width,
                         height: UIScreen.main.bounds.height
-                            * 0.5
+                            * imageSize
                     )
                     .clipped()
             } else {
                 ProgressView()
                     .frame(
                         height: UIScreen.main.bounds.height
-                            * 0.5)
+                            * imageSize)
             }
         }
     }
