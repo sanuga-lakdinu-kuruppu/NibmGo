@@ -23,6 +23,12 @@ struct TabLandingView: View {
                     Text("Facility")
                 }
 
+            FacultyMemberView()
+                .tabItem {
+                    Image(systemName: "person.2.fill")
+                    Text("Member")
+                }
+
             ScheduleView()
                 .tabItem {
                     Image(systemName: "calendar.badge.clock")
