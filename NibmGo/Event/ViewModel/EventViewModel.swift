@@ -1,12 +1,11 @@
 import SwiftUI
 
-class HomeViewModel {
-    static let shared = HomeViewModel()
-
+class EventViewModel {
+    static var shared = EventViewModel()
     private init() {}
 
-    func getUpcommingEvents() -> [EventModel] {
-        let upcomingEvents: [EventModel] = [
+    func getAllEvents() -> [EventModel] {
+        let events: [EventModel] = [
             .init(
                 eventName: "New Year 2025",
                 eventDayInString: "Mon, Jan 01, 2025",
@@ -60,7 +59,6 @@ class HomeViewModel {
                 isSubscribed: false
             ),
         ]
-
-        return upcomingEvents
+        return events
     }
 }
