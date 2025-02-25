@@ -2,16 +2,15 @@ import SwiftUI
 
 struct FacultyMemberView: View {
     @State private var searchTerm: String = ""
-    @State private var isShowingIndetails: Bool = false
-    @State private var selectedFacultyMember: FacultyMember?
-
-    private var filteredFacultyMembers: [FacultyMember] {
-        let allFacultyMembers = FacultyMemberViewModel.shared.getAllFacultyMembers()
+    @State private var selectedFacultyMember: FacultyMemberModel?
+    private var filteredFacultyMembers: [FacultyMemberModel] {
+        let allFacultyMembers = FacultyMemberViewModel.shared
+            .getAllFacultyMembers()
         if searchTerm.isEmpty {
             return allFacultyMembers
         } else {
             return allFacultyMembers.filter {
-                $0.facultyName.localizedCaseInsensitiveContains(searchTerm)
+                $0.firstName.localizedCaseInsensitiveContains(searchTerm)
             }
         }
     }
@@ -19,7 +18,7 @@ struct FacultyMemberView: View {
     var body: some View {
         ZStack {
             CommonBackgroundView()
-            
+
             VStack {
                 VStack(spacing: 16) {
                     HStack {
@@ -28,7 +27,8 @@ struct FacultyMemberView: View {
                     }
                     .padding(.top, 32)
 
-                    CommonSearchBarView(searchTerm: $searchTerm, hint: "Search faculty members")
+                    CommonSearchBarView(
+                        searchTerm: $searchTerm, hint: "Search faculty members")
 
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
@@ -37,12 +37,16 @@ struct FacultyMemberView: View {
                                     Button {
                                         selectedFacultyMember = facultyMember
                                     } label: {
-                                        PinnedItemButtonView(text: facultyMember.facultyName)
+                                        PinnedItemButtonView(
+                                            text:
+                                                "\(facultyMember.title). \(facultyMember.firstName) \(facultyMember.lastName)"
+                                        )
                                     }
                                 }
                             }
                         }
                     }
+
                 }
                 .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
 
@@ -50,8 +54,9 @@ struct FacultyMemberView: View {
                     ForEach(filteredFacultyMembers, id: \.id) { facultyMember in
                         CommonNavigationListType2View(
                             icon: "person.crop.circle.fill",
-                            titleText: facultyMember.facultyName,
-                            tagText: facultyMember.designation
+                            titleText:
+                                "\(facultyMember.title). \(facultyMember.firstName) \(facultyMember.lastName)",
+                            tagText: facultyMember.department
                         )
                         .onTapGesture {
                             selectedFacultyMember = facultyMember
@@ -59,12 +64,15 @@ struct FacultyMemberView: View {
                     }
                 }
                 .padding(.top, 16)
+                .contentMargins(.vertical, 0)
 
                 Spacer()
             }
         }
         .sheet(item: $selectedFacultyMember) { facultyMember in
-            FacultyMemberIndetailView(selectedFacultyMember: $selectedFacultyMember)
+            FacultyMemberIndetailSheetView(
+                selectedFacultyMember: $selectedFacultyMember
+            )
         }
     }
 }
@@ -72,4 +80,3 @@ struct FacultyMemberView: View {
 #Preview {
     FacultyMemberView()
 }
-
