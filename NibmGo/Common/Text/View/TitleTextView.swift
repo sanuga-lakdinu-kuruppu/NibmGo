@@ -2,11 +2,12 @@ import SwiftUI
 
 struct TitleTextView: View {
     var text: String
+    var foregroundColor: Color = Color.black
     var body: some View {
         Text(text)
             .font(.largeTitle)
             .fontWeight(.heavy)
-            .foregroundColor(Color.black)
+            .foregroundColor(foregroundColor)
     }
 }
 

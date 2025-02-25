@@ -8,7 +8,7 @@ class ProfileViewModel {
     func getUserProfile() -> UserProfileModel {
         //network call
         return UserProfileModel(
-            role: UserType.scholar,
+            role: UserType.facultMember,
             shortName: "Himasha, W.",
             firstName: "Himasha",
             lastName: "Weerasooriya",
