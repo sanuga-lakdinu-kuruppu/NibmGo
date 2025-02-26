@@ -63,7 +63,12 @@ struct HomeView: View {
                         VStack(spacing: 16) {
 
                             HStack(spacing: 16) {
-                                PointsCardView(points: 12453)
+
+                                if globalDto.role.rawValue
+                                    != UserType.guest.rawValue
+                                {
+                                    PointsCardView(points: 12453)
+                                }
 
                                 if globalDto.role.rawValue
                                     == UserType.facultMember.rawValue
@@ -103,7 +108,8 @@ struct HomeView: View {
                                                     .availabilityInDouble,
                                                 availabilityInString: facility
                                                     .availabilityInString
-                                                    .rawValue
+                                                    .rawValue,
+                                                selectedFacility: facility
                                             )
                                         }
                                     }
@@ -125,7 +131,11 @@ struct HomeView: View {
                                 HStack(spacing: 16) {
                                     ForEach(upcommingEvents) { event in
                                         Button {
-
+                                            globalDto.selectedEvent = event
+                                            globalDto.paths
+                                                .append(
+                                                    Route.event.rawValue
+                                                )
                                         } label: {
                                             CommonEventCardView(
                                                 title: event.eventName,
@@ -153,5 +163,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView().environmentObject(GlobalDto.shared)
 }
