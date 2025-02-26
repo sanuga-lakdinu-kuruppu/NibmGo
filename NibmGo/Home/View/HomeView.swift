@@ -102,7 +102,7 @@ struct HomeView: View {
                                 HStack(spacing: 16) {
                                     ForEach(upcommingEvents) { event in
                                         Button {
-
+                                            
                                         } label: {
                                             CommonEventCardView(
                                                 title: event.eventName,

@@ -1,49 +1,63 @@
-
-
 import SwiftUI
 
 struct ProfileEditView: View {
     @EnvironmentObject var globalRouter: NavigationRouter
-
-    @State private var user: UserProfileModel = ProfileViewModel.shared
-        .getUserProfile()
+    @State var user: UserProfileModel?
+    @State var firstName: String = ""
+    @State var lastName: String = ""
 
     var body: some View {
         ZStack {
             CommonBackgroundView()
-            ScrollView {
-                VStack() {
+            if let user = user {
+                VStack {
                     HStack {
                         TitleTextView(text: user.shortName)
                         Spacer()
-                        HyperLinkTextView(text: "Done")
-                            .onTapGesture {
-                            }
+                        if firstName != user.firstName
+                            || lastName != user.lastName
+                        {
+                            HyperLinkTextView(text: "Done")
+                                .onTapGesture {
+                                    globalRouter.paths.removeLast()
+                                }
+                        } else {
+                            HyperLinkTextView(isEnabled: false, text: "Done")
+                        }
+
                     }
                     .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
 
                     List {
                         Section {
-                            CommonStaticListView(
-                                icon: "", titleText: "First Name",
-                                valueText: user.firstName)
-                            CommonStaticListView(
-                                icon: "", titleText: "Last Name",
-                                valueText: user.lastName)
-                        }
+                            CommonListTextInputView(
+                                firstName: $firstName,
+                                titleText: "First Name",
+                                placeholderText: "Enter your first name"
+                            )
 
+                            CommonListTextInputView(
+                                firstName: $lastName,
+                                titleText: "Last Name",
+                                placeholderText: "Enter your last name"
+                            )
+
+                        }
                     }
                     .contentMargins(.vertical, 0)
-                    .frame(height: UIScreen.main.bounds.height * 1)
-
-
-
                 }
                 .padding(.top, 32)
             }
         }
+        .onAppear {
+            user = ProfileViewModel.shared
+                .getUserProfile()
+            if let user = user {
+                firstName = user.firstName
+                lastName = user.lastName
+            }
+        }
     }
-
 }
 
 #Preview {
