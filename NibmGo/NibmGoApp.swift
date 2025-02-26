@@ -27,7 +27,13 @@ struct NibmGoApp: App {
                             TabLandingView()
                         } else if destination == Route.registration.rawValue {
                             RegisterView()
-                        } 
+                        } else if destination == Route.profileEdit.rawValue {
+                            ProfileEditView()
+                        } else if destination
+                            == Route.profilePasswordReset.rawValue
+                        {
+                            ProfilePasswordResetView()
+                        }
                     }
             }
             .accentColor(Color("brandColor"))
