@@ -33,6 +33,10 @@ struct NibmGoApp: App {
                             == Route.profilePasswordReset.rawValue
                         {
                             ProfilePasswordResetView()
+                        } else if destination
+                            == Route.notification.rawValue
+                        {
+                            NotificationView()
                         }
                     }
             }

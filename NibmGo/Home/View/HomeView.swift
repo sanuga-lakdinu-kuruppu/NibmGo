@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @EnvironmentObject var globalRouter: NavigationRouter
     var isNotificationThere: Bool = false
     @State var isAvailable: Bool = false
     var userType: UserType = UserType.facultMember
@@ -24,15 +25,21 @@ struct HomeView: View {
                     }
                     Spacer()
 
-                    if isNotificationThere {
-                        NotificationButtonView(
-                            icon: "bell.badge.fill",
-                            iconColor: Color("brandColor")
-                        )
-                    } else {
-                        NotificationButtonView()
+                    Button {
+                        globalRouter.paths
+                            .append(
+                                Route.notification.rawValue
+                            )
+                    } label: {
+                        if isNotificationThere {
+                            NotificationButtonView(
+                                icon: "bell.badge.fill",
+                                iconColor: Color("brandColor")
+                            )
+                        } else {
+                            NotificationButtonView()
+                        }
                     }
-
                 }
 
                 ScrollView {
@@ -102,7 +109,7 @@ struct HomeView: View {
                                 HStack(spacing: 16) {
                                     ForEach(upcommingEvents) { event in
                                         Button {
-                                            
+
                                         } label: {
                                             CommonEventCardView(
                                                 title: event.eventName,
