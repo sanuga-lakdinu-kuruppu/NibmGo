@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TabLandingView: View {
-    @EnvironmentObject var globalRouter: NavigationRouter
+    @EnvironmentObject var globalDto: GlobalDto
     var body: some View {
         TabView {
             HomeView()
@@ -23,35 +23,44 @@ struct TabLandingView: View {
                     Text("Facility")
                 }
 
-            FacultyMemberView()
-                .tabItem {
-                    Image(systemName: "person.2.fill")
-                    Text("Member")
-                }
-
             EventView()
                 .tabItem {
                     Image(systemName: "party.popper")
                     Text("Event")
                 }
 
-            ScheduleView()
-                .tabItem {
-                    Image(systemName: "calendar.badge.clock")
-                    Text("Schedule")
-                }
+            if globalDto.role.rawValue != UserType.guest.rawValue {
+                FacultyMemberView()
+                    .tabItem {
+                        Image(systemName: "person.2.fill")
+                        Text("Member")
+                    }
 
-            ContributionView()
-                .tabItem {
-                    Image(systemName: "hand.draw.fill")
-                    Text("Contribution")
-                }
+                ScheduleView()
+                    .tabItem {
+                        Image(systemName: "calendar.badge.clock")
+                        Text("Schedule")
+                    }
 
-            ProfileView()
-                .tabItem {
-                    Image(systemName: "person.crop.circle.fill")
-                    Text("Profile")
-                }
+                ContributionView()
+                    .tabItem {
+                        Image(systemName: "hand.draw.fill")
+                        Text("Contribution")
+                    }
+
+                EmergencyContactsView()
+                    .tabItem {
+                        Image(systemName: "arrowshape.right.circle.fill")
+                        Text("Emergency")
+                    }
+
+                ProfileView()
+                    .tabItem {
+                        Image(systemName: "person.crop.circle.fill")
+                        Text("Profile")
+                    }
+            }
+
         }
         .navigationBarBackButtonHidden(true)
         .accentColor(Color("brandColor"))
@@ -59,5 +68,5 @@ struct TabLandingView: View {
 }
 
 #Preview {
-    TabLandingView().environmentObject(NavigationRouter())
+    TabLandingView().environmentObject(GlobalDto.shared)
 }

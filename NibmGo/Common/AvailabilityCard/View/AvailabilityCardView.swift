@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct AvailabilityCardView: View {
+    @EnvironmentObject var globalDto: GlobalDto
     var availabilityValueInDouble: Double = 0.0
     var availabilityValueInString: String = ""
     let maxValue: Double = 100.0
@@ -30,25 +31,27 @@ struct AvailabilityCardView: View {
                 .tint(getColorCode(value: availabilityValueInDouble).gradient)
             }
 
-            HStack {
-                Button {
+            if globalDto.role.rawValue != UserType.guest.rawValue {
+                HStack {
+                    Button {
 
-                } label: {
-                    AvailabilityCardButtonView(
-                        text: "Low", backgroundColor: .green)
-                }
-                Button {
+                    } label: {
+                        AvailabilityCardButtonView(
+                            text: "Low", backgroundColor: .green)
+                    }
+                    Button {
 
-                } label: {
-                    AvailabilityCardButtonView(
-                        text: "Moderate", backgroundColor: .orange)
-                }
+                    } label: {
+                        AvailabilityCardButtonView(
+                            text: "Moderate", backgroundColor: .orange)
+                    }
 
-                Button {
+                    Button {
 
-                } label: {
-                    AvailabilityCardButtonView(
-                        text: "High", backgroundColor: .red)
+                    } label: {
+                        AvailabilityCardButtonView(
+                            text: "High", backgroundColor: .red)
+                    }
                 }
             }
 
@@ -75,5 +78,5 @@ struct AvailabilityCardView: View {
 }
 
 #Preview {
-    AvailabilityCardView()
+    AvailabilityCardView().environmentObject(GlobalDto.shared)
 }

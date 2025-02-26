@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ProfileEditView: View {
-    @EnvironmentObject var globalRouter: NavigationRouter
+    @EnvironmentObject var globalDto: GlobalDto
     @State var user: UserProfileModel?
     @State var firstName: String = ""
     @State var lastName: String = ""
@@ -19,7 +19,8 @@ struct ProfileEditView: View {
                         {
                             HyperLinkTextView(text: "Done")
                                 .onTapGesture {
-                                    globalRouter.paths.removeLast()
+                                    globalDto.paths
+                                        .removeLast()
                                 }
                         } else {
                             HyperLinkTextView(isEnabled: false, text: "Done")

@@ -2,6 +2,7 @@ import Charts
 import SwiftUI
 
 struct FacilityView: View {
+    @EnvironmentObject var globalDto: GlobalDto
     @State var isShowingIndetails: Bool = false
     @State var selectedFacility: FacilityModel?
     private var filteredFacilities: [FacilityModel] {
@@ -30,18 +31,20 @@ struct FacilityView: View {
                     CommonSearchBarView(
                         searchTerm: $searchTerm, hint: "Search facilities")
 
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(filteredFacilities) { facility in
-                                if facility.isPinned {
-                                    Button {
-                                        selectedFacility = facility
-                                    } label: {
-                                        PinnedItemButtonView(
-                                            text: facility.name)
+                    if globalDto.role.rawValue != UserType.guest.rawValue {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(filteredFacilities) { facility in
+                                    if facility.isPinned {
+                                        Button {
+                                            selectedFacility = facility
+                                        } label: {
+                                            PinnedItemButtonView(
+                                                text: facility.name)
+                                        }
                                     }
-                                }
 
+                                }
                             }
                         }
                     }
@@ -93,5 +96,5 @@ struct FacilityView: View {
 }
 
 #Preview {
-    FacilityView()
+    FacilityView().environmentObject(GlobalDto.shared)
 }

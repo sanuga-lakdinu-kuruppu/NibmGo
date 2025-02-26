@@ -5,6 +5,7 @@ struct FacilityModel: Identifiable {
     var facilityId: Int
     var name: String
     var type: FacilityType
+    var mobile: String
     var longitude: Double
     var latitude: Double
     var address: String

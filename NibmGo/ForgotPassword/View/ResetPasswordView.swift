@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ResetPasswordView: View {
-    @EnvironmentObject var globalRouter: NavigationRouter
+    @EnvironmentObject var globalDto: GlobalDto
     @State var newPassword: String = ""
     @State var confirmPassword: String = ""
     var body: some View {
@@ -22,7 +22,8 @@ struct ResetPasswordView: View {
                 )
 
                 Button {
-                    globalRouter.paths.append(Route.login.rawValue)
+                    globalDto.paths
+                        .append(Route.login.rawValue)
                 } label: {
                     CommonButtonView(
                         buttonText: "Reset",
