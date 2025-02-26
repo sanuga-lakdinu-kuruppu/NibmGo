@@ -6,21 +6,30 @@ struct HomeAvailabilityCardView: View {
     var facilityAddress: String
     var availabilityInDouble: Double
     var availabilityInString: String
+    var selectedFacility: FacilityModel
 
     var body: some View {
         HStack {
-            VStack(alignment: .leading) {
-                FacilityCardTitleView(
-                    facilityName: facilityName,
-                    facilityAddress: facilityAddress
-                )
+            Button {
+                globalDto.selectedFacility = selectedFacility
+                globalDto.paths
+                    .append(
+                        Route.facility.rawValue
+                    )
+            } label: {
+                VStack(alignment: .leading) {
+                    FacilityCardTitleView(
+                        facilityName: facilityName,
+                        facilityAddress: facilityAddress
+                    )
 
-                Spacer()
-                FacilityAvailabilityGuageView(
-                    availabilityInDouble: availabilityInDouble,
-                    availabilityInString: availabilityInString
-                )
+                    Spacer()
+                    FacilityAvailabilityGuageView(
+                        availabilityInDouble: availabilityInDouble,
+                        availabilityInString: availabilityInString
+                    )
 
+                }
             }
 
             if globalDto.role.rawValue != UserType.guest.rawValue {
@@ -65,10 +74,11 @@ struct HomeAvailabilityCardView: View {
 }
 
 #Preview {
-    HomeAvailabilityCardView(
-        facilityName: "fajkls",
-        facilityAddress: "fajksl",
-        availabilityInDouble: 74.0,
-        availabilityInString: "fj"
-    ).environmentObject(GlobalDto.shared)
+//    HomeAvailabilityCardView(
+//        facilityName: "fajkls",
+//        facilityAddress: "fajksl",
+//        availabilityInDouble: 74.0,
+//        availabilityInString: "fj",
+//        selectedFacility: <#T##FacilityModel#>
+//    ).environmentObject(GlobalDto.shared)
 }

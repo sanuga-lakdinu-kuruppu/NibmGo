@@ -40,6 +40,24 @@ struct NibmGoApp: App {
                             == Route.notification.rawValue
                         {
                             NotificationView()
+                        } else if destination
+                            == Route.event.rawValue
+                        {
+                            if let event = globalDto.selectedEvent {
+                                EventView(selectedEvent: event)
+                            }
+                        } else if destination
+                            == Route.facility.rawValue
+                        {
+                            if let facility = globalDto.selectedFacility {
+                                FacilityView(selectedFacility: facility)
+                            }
+                        } else if destination
+                            == Route.map.rawValue
+                        {
+                            if let facility = globalDto.selectedFacility {
+                                MapView(selectedFacility: facility)
+                            }
                         }
                     }
             }
