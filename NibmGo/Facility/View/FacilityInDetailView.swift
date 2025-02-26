@@ -65,7 +65,12 @@ struct FacilityInDetailView: View {
 
                     VStack(spacing: 16) {
                         Button {
-                            print("clicked here")
+                            globalDto.selectedFacility = selectedFacility
+                            globalDto.paths
+                                .append(
+                                    Route.map.rawValue
+                                )
+                            selectedFacility = nil
                         } label: {
                             CommonButtonView(
                                 buttonText: "Show Me Directions",
