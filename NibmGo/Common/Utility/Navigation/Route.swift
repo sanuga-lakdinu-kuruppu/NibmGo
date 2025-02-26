@@ -9,4 +9,5 @@ enum Route: String {
     case home = "Home"
     case profileEdit = "ProfileEdit"
     case profilePasswordReset = "ProfilePasswordReset"
+    case notification = "Notification"
 }
