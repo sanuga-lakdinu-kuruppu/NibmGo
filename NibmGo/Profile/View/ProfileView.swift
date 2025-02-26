@@ -19,6 +19,10 @@ struct ProfileView: View {
                         Spacer()
                         HyperLinkTextView(text: "Edit")
                             .onTapGesture {
+                                globalRouter.paths
+                                    .append(
+                                        Route.profileEdit.rawValue
+                                    )
                             }
                     }
                     .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
@@ -65,6 +69,10 @@ struct ProfileView: View {
 
                     VStack(spacing: 16) {
                         Button {
+                            globalRouter.paths
+                                .append(
+                                    Route.profilePasswordReset.rawValue
+                                )
                         } label: {
                             CommonButtonView(
                                 buttonText: "Reset Password",

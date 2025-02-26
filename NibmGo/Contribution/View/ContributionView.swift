@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct ContributionView: View {
-    @State private var contribution: String = ""
     @State private var availabilityLevel: String = "None"
     @State private var selectedFacility: String = "None"
     let availabilityOptions = ["None", "Low", "Medium", "High"]
@@ -20,9 +19,16 @@ struct ContributionView: View {
                     HStack {
                         TitleTextView(text: "Contribution")
                         Spacer()
-                        HyperLinkTextView(text: "Add")
-                            .onTapGesture {
-                            }
+                        if selectedFacility != "None"
+                            && availabilityLevel != "None"
+                        {
+                            HyperLinkTextView(text: "Add")
+                                .onTapGesture {
+                                    selectedFacility = "None"
+                                    availabilityLevel = "None"
+                                }
+                        }
+
                     }
                     .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
 
