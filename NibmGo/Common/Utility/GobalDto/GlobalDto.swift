@@ -43,5 +43,8 @@ class GlobalDto: ObservableObject {
     @Published var paths: [String] = []
     @Published var commingFrom: String = ""
 
+    @Published var selectedEvent: EventModel?
+    @Published var selectedFacility: FacilityModel?
+
     private init() {}
 }

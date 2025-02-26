@@ -2,7 +2,7 @@ import SwiftUI
 
 struct EventView: View {
     @State private var searchTerm: String = ""
-    @State private var selectedEvent: EventModel?
+    @State var selectedEvent: EventModel?
     private var filteredEvents: [EventModel] {
         let allEvents = EventViewModel.shared
             .getAllEvents()
