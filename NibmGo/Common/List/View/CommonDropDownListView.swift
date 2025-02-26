@@ -1,26 +1,22 @@
 import SwiftUI
 
 struct CommonDropDownListView: View {
-    @Binding var user: UserProfileModel
-    @Binding var branches: [String]
+    @Binding var options: [String]
     var titleText: String
-    @State var selectedBranch: String = "Berkely"
+    @Binding var selection: String
 
     var body: some View {
         HStack {
             NormalTextView(
                 text: titleText, foregroundColor: .black)
             Spacer()
-            Picker("", selection: $selectedBranch) {
-                ForEach(branches, id: \.self) { branch in
+            Picker("", selection: $selection) {
+                ForEach(options, id: \.self) { option in
                     NormalTextView(
-                        text: branch, foregroundColor: .black)
+                        text: option, foregroundColor: .black)
                 }
             }
             .labelsHidden()
-            .onChange(of: selectedBranch) {
-                user.primaryBranch = selectedBranch
-            }
         }
     }
 }

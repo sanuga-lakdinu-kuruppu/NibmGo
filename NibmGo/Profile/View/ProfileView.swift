@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @EnvironmentObject var globalRouter: NavigationRouter
+    @EnvironmentObject var globalDto: GlobalDto
     @State var selectedBranch = ""
     @State var branches = [
         "Berkely", "Miami", "San Francisco", "New York",
@@ -19,7 +19,7 @@ struct ProfileView: View {
                         Spacer()
                         HyperLinkTextView(text: "Edit")
                             .onTapGesture {
-                                globalRouter.paths
+                                globalDto.paths
                                     .append(
                                         Route.profileEdit.rawValue
                                     )
@@ -35,13 +35,14 @@ struct ProfileView: View {
                         }
                         Section {
                             CommonDropDownListView(
-                                user: $user,
-                                branches: $branches,
-                                titleText: "Primary Branch"
+                                options: $branches,
+                                titleText: "Primary Branch",
+                                selection: $selectedBranch
                             )
                         }
 
-                        if user.role.rawValue == UserType.facultMember.rawValue
+                        if globalDto.role.rawValue
+                            == UserType.facultMember.rawValue
                         {
                             Section {
                                 CommonToggleListView(user: $user)
@@ -69,7 +70,7 @@ struct ProfileView: View {
 
                     VStack(spacing: 16) {
                         Button {
-                            globalRouter.paths
+                            globalDto.paths
                                 .append(
                                     Route.profilePasswordReset.rawValue
                                 )
@@ -82,6 +83,16 @@ struct ProfileView: View {
                         }
 
                         Button {
+                            globalDto.paths.removeAll()
+                            globalDto.isLoggedIn = false
+                            globalDto.accessToken = ""
+                            globalDto.refreshToken = ""
+                            globalDto.role = .guest
+                            globalDto.commingFrom = ""
+                            globalDto.paths
+                                .append(
+                                    Route.login.rawValue
+                                )
                         } label: {
                             CommonButtonView(
                                 buttonText: "Sign Out",
@@ -102,5 +113,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView()
+    ProfileView().environmentObject(GlobalDto.shared)
 }

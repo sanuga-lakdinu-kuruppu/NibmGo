@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ForgotPasswordVerifyEmailView: View {
-    @EnvironmentObject var globalRouter: NavigationRouter
+    @EnvironmentObject var globalDto: GlobalDto
     @State var universityEmail: String = ""
 
     var body: some View {
@@ -22,9 +22,9 @@ struct ForgotPasswordVerifyEmailView: View {
                 )
 
                 Button {
-                    globalRouter.commingFrom =
+                    globalDto.commingFrom =
                         Route.forgotPasswordVerifyEmail.rawValue
-                    globalRouter.paths.append(
+                    globalDto.paths.append(
                         Route.otpVerification.rawValue)
                 } label: {
                     CommonButtonView(
@@ -41,5 +41,5 @@ struct ForgotPasswordVerifyEmailView: View {
 }
 
 #Preview {
-    ForgotPasswordVerifyEmailView().environmentObject(NavigationRouter())
+    ForgotPasswordVerifyEmailView().environmentObject(GlobalDto.shared)
 }

@@ -6,7 +6,8 @@ class FacilityViewModel {
     func getAllFacilities() -> [FacilityModel] {
         let facilities = [
             FacilityModel(
-                facilityId: 1, name: "California Hall", type: .lectureHall,
+                facilityId: 1, name: "California Hall",
+                type: .lectureHall, mobile: "+94 11 732 1000",
                 longitude: -122.26032259113008,
                 latitude: 37.87185385379638,
                 address: "University of California, Berkeley.",
@@ -21,6 +22,7 @@ class FacilityViewModel {
                 availabilityInString: .low, isPinned: true, isSubscribed: true),
             FacilityModel(
                 facilityId: 2, name: "Doe Library", type: .library,
+                mobile: "+94 11 732 1000",
                 longitude: -122.25924194010149,
                 latitude: 37.87226759580837,
                 address: "University of California, Berkeley.",
@@ -33,6 +35,7 @@ class FacilityViewModel {
                 availabilityInString: .low),
             FacilityModel(
                 facilityId: 3, name: "Durant Hall", type: .lectureHall,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26010024695167,
                 latitude: 37.87135715736398,
                 address: "University of California, Berkeley.",
@@ -46,6 +49,7 @@ class FacilityViewModel {
                 availabilityInString: .high, isPinned: true, isSubscribed: true),
             FacilityModel(
                 facilityId: 4, name: "Edwards Stadium", type: .stadium,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26486417157663,
                 latitude: 37.86906470198154,
                 address: "University of California, Berkeley.",
@@ -56,6 +60,7 @@ class FacilityViewModel {
                 availabilityInString: .high),
             FacilityModel(
                 facilityId: 5, name: "California Hall", type: .lectureHall,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26032259113008,
                 latitude: 37.87185385379638,
                 address: "University of California, Berkeley.",
@@ -70,6 +75,7 @@ class FacilityViewModel {
                 availabilityInString: .low, isPinned: true, isSubscribed: true),
             FacilityModel(
                 facilityId: 6, name: "Doe Library", type: .library,
+                mobile: "+94 11 732 1000",
                 longitude: -122.25924194010149,
                 latitude: 37.87226759580837,
                 address: "University of California, Berkeley.",
@@ -81,7 +87,8 @@ class FacilityViewModel {
                 ], availabilityInDouble: 34.0,
                 availabilityInString: .low, isPinned: true, isSubscribed: true),
             FacilityModel(
-                facilityId: 7, name: "Durant Hall", type: .lectureHall,
+                facilityId: 7, name: "First Aid Station", type: .emergency,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26010024695167,
                 latitude: 37.87135715736398,
                 address: "University of California, Berkeley.",
@@ -95,6 +102,7 @@ class FacilityViewModel {
                 availabilityInString: .high),
             FacilityModel(
                 facilityId: 8, name: "Edwards Stadium", type: .stadium,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26486417157663,
                 latitude: 37.86906470198154,
                 address: "University of California, Berkeley.",
@@ -105,6 +113,7 @@ class FacilityViewModel {
                 availabilityInString: .moderate),
             FacilityModel(
                 facilityId: 9, name: "California Hall", type: .lectureHall,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26032259113008,
                 latitude: 37.87185385379638,
                 address: "University of California, Berkeley.",
@@ -119,6 +128,7 @@ class FacilityViewModel {
                 availabilityInString: .low, isPinned: true, isSubscribed: true),
             FacilityModel(
                 facilityId: 10, name: "Doe Library", type: .library,
+                mobile: "+94 11 732 1000",
                 longitude: -122.25924194010149,
                 latitude: 37.87226759580837,
                 address: "University of California, Berkeley.",
@@ -130,7 +140,8 @@ class FacilityViewModel {
                 ], availabilityInDouble: 34.0,
                 availabilityInString: .low),
             FacilityModel(
-                facilityId: 11, name: "Durant Hall", type: .lectureHall,
+                facilityId: 11, name: "Security Office 1", type: .emergency,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26010024695167,
                 latitude: 37.87135715736398,
                 address: "University of California, Berkeley.",
@@ -144,6 +155,7 @@ class FacilityViewModel {
                 availabilityInString: .high),
             FacilityModel(
                 facilityId: 12, name: "Edwards Stadium", type: .stadium,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26486417157663,
                 latitude: 37.86906470198154,
                 address: "University of California, Berkeley.",
@@ -154,6 +166,7 @@ class FacilityViewModel {
                 availabilityInString: .low, isPinned: true, isSubscribed: true),
             FacilityModel(
                 facilityId: 13, name: "California Hall", type: .lectureHall,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26032259113008,
                 latitude: 37.87185385379638,
                 address: "University of California, Berkeley.",
@@ -168,6 +181,7 @@ class FacilityViewModel {
                 availabilityInString: .moderate),
             FacilityModel(
                 facilityId: 14, name: "Doe Library", type: .library,
+                mobile: "+94 11 732 1000",
                 longitude: -122.25924194010149,
                 latitude: 37.87226759580837,
                 address: "University of California, Berkeley.",
@@ -180,6 +194,7 @@ class FacilityViewModel {
                 availabilityInString: .low),
             FacilityModel(
                 facilityId: 15, name: "Durant Hall", type: .lectureHall,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26010024695167,
                 latitude: 37.87135715736398,
                 address: "University of California, Berkeley.",
@@ -193,6 +208,7 @@ class FacilityViewModel {
                 availabilityInString: .low, isPinned: true, isSubscribed: true),
             FacilityModel(
                 facilityId: 16, name: "Edwards Stadium", type: .stadium,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26486417157663,
                 latitude: 37.86906470198154,
                 address: "University of California, Berkeley.",
@@ -203,6 +219,7 @@ class FacilityViewModel {
                 availabilityInString: .high, isPinned: true, isSubscribed: true),
             FacilityModel(
                 facilityId: 17, name: "California Hall", type: .lectureHall,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26032259113008,
                 latitude: 37.87185385379638,
                 address: "University of California, Berkeley.",
@@ -217,6 +234,7 @@ class FacilityViewModel {
                 availabilityInString: .moderate),
             FacilityModel(
                 facilityId: 18, name: "Doe Library", type: .library,
+                mobile: "+94 11 732 1000",
                 longitude: -122.25924194010149,
                 latitude: 37.87226759580837,
                 address: "University of California, Berkeley.",
@@ -229,6 +247,7 @@ class FacilityViewModel {
                 availabilityInString: .low, isPinned: true, isSubscribed: true),
             FacilityModel(
                 facilityId: 19, name: "Durant Hall", type: .lectureHall,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26010024695167,
                 latitude: 37.87135715736398,
                 address: "University of California, Berkeley.",
@@ -242,6 +261,7 @@ class FacilityViewModel {
                 availabilityInString: .moderate),
             FacilityModel(
                 facilityId: 20, name: "Edwards Stadium", type: .stadium,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26486417157663,
                 latitude: 37.86906470198154,
                 address: "University of California, Berkeley.",

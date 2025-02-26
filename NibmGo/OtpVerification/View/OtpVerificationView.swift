@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct OtpVerificationView: View {
-    @EnvironmentObject var globalRouter: NavigationRouter
+    @EnvironmentObject var globalDto: GlobalDto
     @State var otp: [String] = Array(repeating: "", count: 4)
     @FocusState var focusedIndex: Int?
     @State var timer: Timer? = nil
@@ -16,7 +16,7 @@ struct OtpVerificationView: View {
                     .padding(.top, 16)
                 NormalTextView(
                     text:
-                        "We've sent a 4 digit code to your entered university email '\(globalRouter.universityEmail)'",
+                        "We've sent a 4 digit code to your entered university email",
                     multilineTextAlignment: .center
                 )
 
@@ -37,15 +37,15 @@ struct OtpVerificationView: View {
                 }
 
                 Button {
-                    if globalRouter.commingFrom
+                    if globalDto.commingFrom
                         == Route.forgotPasswordVerifyEmail.rawValue
                     {
-                        globalRouter.paths
+                        globalDto.paths
                             .append(Route.forgotPasswordResetPassword.rawValue)
-                    } else if globalRouter.commingFrom
+                    } else if globalDto.commingFrom
                         == Route.registration.rawValue
                     {
-                        globalRouter.paths
+                        globalDto.paths
                             .append(
                                 Route.home.rawValue
                             )
@@ -96,5 +96,5 @@ struct OtpVerificationView: View {
 }
 
 #Preview {
-    OtpVerificationView().environmentObject(NavigationRouter())
+    OtpVerificationView().environmentObject(GlobalDto.shared)
 }
