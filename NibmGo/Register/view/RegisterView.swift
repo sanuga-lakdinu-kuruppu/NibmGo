@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @EnvironmentObject var globalRouter: NavigationRouter
+    @EnvironmentObject var globalDto: GlobalDto
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var universityEmail: String = ""
@@ -48,8 +48,9 @@ struct RegisterView: View {
                     )
 
                     Button(action: {
-                        globalRouter.commingFrom = Route.registration.rawValue
-                        globalRouter.paths
+                        globalDto.commingFrom =
+                            Route.registration.rawValue
+                        globalDto.paths
                             .append(Route.otpVerification.rawValue)
                     }) {
                         CommonButtonView(

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject var globalRouter: NavigationRouter
+    @EnvironmentObject var globalDto: GlobalDto
     var isNotificationThere: Bool = false
     @State var isAvailable: Bool = false
     var userType: UserType = UserType.facultMember
@@ -25,20 +25,36 @@ struct HomeView: View {
                     }
                     Spacer()
 
-                    Button {
-                        globalRouter.paths
-                            .append(
-                                Route.notification.rawValue
-                            )
-                    } label: {
-                        if isNotificationThere {
-                            NotificationButtonView(
-                                icon: "bell.badge.fill",
-                                iconColor: Color("brandColor")
-                            )
-                        } else {
-                            NotificationButtonView()
+                    if globalDto.role.rawValue != UserType.guest.rawValue {
+                        Button {
+                            globalDto.paths
+                                .append(
+                                    Route.notification.rawValue
+                                )
+                        } label: {
+                            if isNotificationThere {
+                                NotificationButtonView(
+                                    icon: "bell.badge.fill",
+                                    iconColor: Color("brandColor")
+                                )
+                            } else {
+                                NotificationButtonView()
+                            }
                         }
+                    } else {
+                        HyperLinkTextView(text: "Exit")
+                            .onTapGesture {
+                                globalDto.paths.removeAll()
+                                globalDto.isLoggedIn = false
+                                globalDto.accessToken = ""
+                                globalDto.refreshToken = ""
+                                globalDto.role = .guest
+                                globalDto.commingFrom = ""
+                                globalDto.paths
+                                    .append(
+                                        Route.login.rawValue
+                                    )
+                            }
                     }
                 }
 
@@ -49,7 +65,7 @@ struct HomeView: View {
                             HStack(spacing: 16) {
                                 PointsCardView(points: 12453)
 
-                                if userType.rawValue
+                                if globalDto.role.rawValue
                                     == UserType.facultMember.rawValue
                                 {
                                     AvailabilityToggleView(

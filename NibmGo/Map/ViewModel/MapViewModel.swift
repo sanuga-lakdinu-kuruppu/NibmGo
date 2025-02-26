@@ -11,6 +11,7 @@ class MapViewModel {
         let facilities = [
             FacilityModel(
                 facilityId: 1, name: "California Hall", type: .lectureHall,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26032259113008,
                 latitude: 37.87185385379638,
                 address: "University of California, Berkeley.",
@@ -25,6 +26,7 @@ class MapViewModel {
                 availabilityInString: .low),
             FacilityModel(
                 facilityId: 2, name: "Doe Library", type: .library,
+                mobile: "+94 11 732 1000",
                 longitude: -122.25924194010149,
                 latitude: 37.87226759580837,
                 address: "University of California, Berkeley.",
@@ -37,6 +39,7 @@ class MapViewModel {
                 availabilityInString: .moderate),
             FacilityModel(
                 facilityId: 3, name: "Durant Hall", type: .lectureHall,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26010024695167,
                 latitude: 37.87135715736398,
                 address: "University of California, Berkeley.",
@@ -50,6 +53,7 @@ class MapViewModel {
                 availabilityInString: .high),
             FacilityModel(
                 facilityId: 4, name: "Edwards Stadium", type: .stadium,
+                mobile: "+94 11 732 1000",
                 longitude: -122.26486417157663,
                 latitude: 37.86906470198154,
                 address: "University of California, Berkeley.",
