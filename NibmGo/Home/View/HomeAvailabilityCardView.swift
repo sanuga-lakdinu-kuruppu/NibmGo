@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct HomeAvailabilityCardView: View {
+    @EnvironmentObject var globalDto: GlobalDto
     var facilityName: String
     var facilityAddress: String
     var availabilityInDouble: Double
@@ -21,32 +22,36 @@ struct HomeAvailabilityCardView: View {
                 )
 
             }
-            Spacer()
-            VStack {
-                Button {
 
-                } label: {
-                    AvailabilityCardButtonView(
-                        text: "Low", backgroundColor: .green,
-                        maxWidth: UIScreen.main.bounds.width * 0.24)
-                }
+            if globalDto.role.rawValue != UserType.guest.rawValue {
                 Spacer()
-                Button {
+                VStack {
+                    Button {
 
-                } label: {
-                    AvailabilityCardButtonView(
-                        text: "Moderate", backgroundColor: .orange,
-                        maxWidth: UIScreen.main.bounds.width * 0.24)
-                }
-                Spacer()
-                Button {
+                    } label: {
+                        AvailabilityCardButtonView(
+                            text: "Low", backgroundColor: .green,
+                            maxWidth: UIScreen.main.bounds.width * 0.24)
+                    }
+                    Spacer()
+                    Button {
 
-                } label: {
-                    AvailabilityCardButtonView(
-                        text: "High", backgroundColor: .red,
-                        maxWidth: UIScreen.main.bounds.width * 0.24)
+                    } label: {
+                        AvailabilityCardButtonView(
+                            text: "Moderate", backgroundColor: .orange,
+                            maxWidth: UIScreen.main.bounds.width * 0.24)
+                    }
+                    Spacer()
+                    Button {
+
+                    } label: {
+                        AvailabilityCardButtonView(
+                            text: "High", backgroundColor: .red,
+                            maxWidth: UIScreen.main.bounds.width * 0.24)
+                    }
                 }
             }
+
         }
         .padding(16)
         .frame(
@@ -65,5 +70,5 @@ struct HomeAvailabilityCardView: View {
         facilityAddress: "fajksl",
         availabilityInDouble: 74.0,
         availabilityInString: "fj"
-    )
+    ).environmentObject(GlobalDto.shared)
 }

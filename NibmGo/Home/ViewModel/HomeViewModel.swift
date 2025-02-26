@@ -4,6 +4,9 @@ class HomeViewModel {
     static let shared = HomeViewModel()
 
     private init() {}
+    
+    
+//    func 
 
     func getUpcommingEvents() -> [EventModel] {
         let upcomingEvents: [EventModel] = [

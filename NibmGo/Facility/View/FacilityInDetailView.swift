@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct FacilityInDetailView: View {
+    @EnvironmentObject var globalDto: GlobalDto
     @Binding var selectedFacility: FacilityModel?
 
     var body: some View {
@@ -17,20 +18,25 @@ struct FacilityInDetailView: View {
                                 HStack {
                                     Spacer()
                                     HStack {
-                                        Button {
-                                        } label: {
-                                            CommonIconButtonView(
-                                                icon: facility.isPinned
-                                                    ? "pin.fill" : "pin")
+                                        if globalDto.role.rawValue
+                                            != UserType.guest.rawValue
+                                        {
+                                            Button {
+                                            } label: {
+                                                CommonIconButtonView(
+                                                    icon: facility.isPinned
+                                                        ? "pin.fill" : "pin")
+                                            }
+                                            Button {
+                                            } label: {
+                                                CommonIconButtonView(
+                                                    icon: facility.isSubscribed
+                                                        ? "checkmark.circle.fill"
+                                                        : "plus"
+                                                )
+                                            }
                                         }
-                                        Button {
-                                        } label: {
-                                            CommonIconButtonView(
-                                                icon: facility.isSubscribed
-                                                    ? "checkmark.circle.fill"
-                                                    : "plus"
-                                            )
-                                        }
+
                                         Button {
                                         } label: {
                                             CommonIconButtonView(

@@ -2,19 +2,22 @@ import SwiftUI
 
 @main
 struct NibmGoApp: App {
-    @StateObject var globalRouter = NavigationRouter()
+    @StateObject var globalDto = GlobalDto.shared
+
     var body: some Scene {
         WindowGroup {
-            NavigationStack(path: $globalRouter.paths) {
-                SplashView()
-                    .navigationDestination(for: String.self) { destination in
+            NavigationStack(path: $globalDto.paths) {
+                LoginView()
+                    .navigationDestination(for: String.self) {
+                        destination in
                         if destination == Route.login.rawValue {
                             LoginView()
                         } else if destination
                             == Route.forgotPasswordVerifyEmail.rawValue
                         {
                             ForgotPasswordVerifyEmailView()
-                        } else if destination == Route.otpVerification.rawValue
+                        } else if destination
+                            == Route.otpVerification.rawValue
                         {
                             OtpVerificationView()
                         } else if destination
@@ -43,6 +46,6 @@ struct NibmGoApp: App {
             .accentColor(Color("brandColor"))
 
         }
-        .environmentObject(globalRouter)
+        .environmentObject(globalDto)
     }
 }

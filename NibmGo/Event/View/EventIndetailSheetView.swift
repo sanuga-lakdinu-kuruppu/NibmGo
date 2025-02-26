@@ -2,6 +2,7 @@ import SwiftUI
 
 struct EventIndetailSheetView: View {
     @Binding var selectedEvent: EventModel?
+    @EnvironmentObject var globalDto: GlobalDto
 
     var body: some View {
         ScrollView {
@@ -17,14 +18,19 @@ struct EventIndetailSheetView: View {
                                 HStack {
                                     Spacer()
                                     HStack {
-                                        Button {
-                                        } label: {
-                                            CommonIconButtonView(
-                                                icon: event.isSubscribed
-                                                    ? "checkmark.circle.fill"
-                                                    : "plus"
-                                            )
+                                        if globalDto.role.rawValue
+                                            != UserType.guest.rawValue
+                                        {
+                                            Button {
+                                            } label: {
+                                                CommonIconButtonView(
+                                                    icon: event.isSubscribed
+                                                        ? "checkmark.circle.fill"
+                                                        : "plus"
+                                                )
+                                            }
                                         }
+
                                         Button {
                                         } label: {
                                             CommonIconButtonView(

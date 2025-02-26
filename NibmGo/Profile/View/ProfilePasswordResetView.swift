@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ProfilePasswordResetView: View {
-    @EnvironmentObject var globalRouter: NavigationRouter
+    @EnvironmentObject var globalDto: GlobalDto
     @State var user: UserProfileModel?
     @State var currentPassword: String = ""
     @State var newPassword: String = ""
@@ -22,7 +22,7 @@ struct ProfilePasswordResetView: View {
                     {
                         HyperLinkTextView(text: "Reset")
                             .onTapGesture {
-                                globalRouter.paths.removeLast()
+                                globalDto.paths.removeLast()
                             }
                     } else {
                         HyperLinkTextView(isEnabled: false, text: "Reset")
