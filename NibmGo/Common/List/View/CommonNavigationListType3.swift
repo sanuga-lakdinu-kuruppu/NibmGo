@@ -28,3 +28,5 @@ struct CommonNavigationListType3: View {
     CommonNavigationListType3(
         titleText: "fjalskd", subtitleText: "fjkal", taglineText: "fdsl")
 }
+
+
