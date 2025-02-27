@@ -45,6 +45,8 @@ struct OtpVerificationView: View {
                     } else if globalDto.commingFrom
                         == Route.registration.rawValue
                     {
+                        globalDto.isLoggedIn = true
+                        globalDto.role = .scholar
                         globalDto.paths
                             .append(
                                 Route.home.rawValue
