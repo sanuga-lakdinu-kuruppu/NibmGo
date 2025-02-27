@@ -1,10 +1,8 @@
-
-
 import SwiftUI
 
 struct ScheduleModel: Identifiable {
-    var id = UUID()             
+    var id = UUID()
     var lecturer: String
-    var subject: String
-    var dateTime: String
+    var module: String
+    var dateTimeInString: String
 }

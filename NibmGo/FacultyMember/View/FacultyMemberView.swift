@@ -3,6 +3,7 @@ import SwiftUI
 struct FacultyMemberView: View {
     @State private var searchTerm: String = ""
     @State private var selectedFacultyMember: FacultyMemberModel?
+    @State var isFocused: Bool = false
     private var filteredFacultyMembers: [FacultyMemberModel] {
         let allFacultyMembers = FacultyMemberViewModel.shared
             .getAllFacultyMembers()
@@ -28,6 +29,7 @@ struct FacultyMemberView: View {
                     .padding(.top, 32)
 
                     CommonSearchBarView(
+                        isFocused: $isFocused,
                         searchTerm: $searchTerm, hint: "Search faculty members")
 
                     ScrollView(.horizontal, showsIndicators: false) {
