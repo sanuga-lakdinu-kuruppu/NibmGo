@@ -5,6 +5,7 @@ struct CommonNavigationListType2View: View {
     var titleText: String
     var tagText: String
     var url: String = ""
+    var size = 0.09
     var body: some View {
         HStack {
             if url.isEmpty {
@@ -13,8 +14,8 @@ struct CommonNavigationListType2View: View {
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(Color("brandColor"))
                     .frame(
-                        width: UIScreen.main.bounds.width * 0.09,
-                        height: UIScreen.main.bounds.width * 0.09
+                        width: UIScreen.main.bounds.width * size,
+                        height: UIScreen.main.bounds.width * size
                     )
                     .padding(.trailing, 8)
             } else {
@@ -24,8 +25,8 @@ struct CommonNavigationListType2View: View {
                             .resizable()
                             .aspectRatio(1, contentMode: .fill)
                             .frame(
-                                width: UIScreen.main.bounds.width * 0.09,
-                                height: UIScreen.main.bounds.width * 0.09
+                                width: UIScreen.main.bounds.width * size,
+                                height: UIScreen.main.bounds.width * size
                             )
                             .clipShape(
                                 RoundedRectangle(
@@ -36,8 +37,8 @@ struct CommonNavigationListType2View: View {
                     } else {
                         ProgressView()
                             .frame(
-                                width: UIScreen.main.bounds.width * 0.09,
-                                height: UIScreen.main.bounds.width * 0.09)
+                                width: UIScreen.main.bounds.width * size,
+                                height: UIScreen.main.bounds.width * size)
                     }
                 }
             }
