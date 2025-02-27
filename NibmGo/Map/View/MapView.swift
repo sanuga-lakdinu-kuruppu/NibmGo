@@ -2,12 +2,16 @@ import MapKit
 import SwiftUI
 
 struct MapView: View {
+    @EnvironmentObject var globalDto: GlobalDto
     let locationManager = CLLocationManager()
     @State var lookAroundScene: MKLookAroundScene?
     @State var isShowingLookAroundScene: Bool = false
     @State var facilities: [FacilityModel] = []
     @State var selectedFacility: FacilityModel?
     @State var isShowingNavigationSheet: Bool = false
+    @State var isShowingHomeSheet: Bool = true
+    @State var isSearchBarFocused: Bool = false
+    @State var searchTerm: String = ""
     let gridItems = [
         GridItem(.flexible()), GridItem(.flexible()),
     ]
@@ -15,6 +19,18 @@ struct MapView: View {
     @State var distance: Double?
     @State var estimatedTime: Int?
     @State var steps: [MKRoute.Step]?
+
+    private var filteredSearches: [FacilityModel] {
+        let allSearches = MapViewModel.shared
+            .getLatestSearches()
+        if searchTerm.isEmpty {
+            return allSearches
+        } else {
+            return allSearches.filter {
+                $0.name.localizedCaseInsensitiveContains(searchTerm)
+            }
+        }
+    }
 
     var body: some View {
         Map {
@@ -65,9 +81,121 @@ struct MapView: View {
             initialScene: lookAroundScene
         )
         .onAppear {
+            isSearchBarFocused = false
             locationManager.requestWhenInUseAuthorization()
             let myMap = MapViewModel.shared.getRelevantMap()
             facilities = myMap.facilities
+            if globalDto.commingFrom == Route.facility.rawValue {
+                isShowingHomeSheet = false
+                globalDto.commingFrom = ""
+            } else {
+                isShowingHomeSheet = true
+            }
+        }
+        .sheet(isPresented: $isShowingHomeSheet) {
+            if isSearchBarFocused {
+                VStack {
+                    VStack(spacing: 16) {
+                        CommonSearchBarView(
+                            isFocused: $isSearchBarFocused,
+                            searchTerm: $searchTerm, hint: "Search map"
+                        )
+
+                    }
+                    .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
+
+                    List {
+                        ScrollView {
+                            ForEach(0..<filteredSearches.count, id: \.self) {
+                                index in
+                                let search = filteredSearches[index]
+                                Button {
+                                    isShowingHomeSheet = false
+                                    selectedFacility = search
+                                } label: {
+                                    if search.type == FacilityType.lectureHall {
+                                        CommonNavigationListType2View(
+                                            icon: "building.fill",
+                                            titleText: search.name,
+                                            tagText: search.address,
+                                            size: 0.06
+                                        )
+                                    } else if search.type
+                                        == FacilityType.library
+                                    {
+                                        CommonNavigationListType2View(
+                                            icon: "books.vertical.fill",
+                                            titleText: search.name,
+                                            tagText: search.address,
+                                            size: 0.06
+                                        )
+                                    } else if search.type
+                                        == FacilityType.stadium
+                                    {
+                                        CommonNavigationListType2View(
+                                            icon: "sportscourt.fill",
+                                            titleText: search.name,
+                                            tagText: search.address,
+                                            size: 0.06
+                                        )
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    .listStyle(.plain)
+                    .padding(.top, 32)
+
+                    Spacer()
+                }.presentationDetents([.large])
+                    .ignoresSafeArea()
+                    .frame(maxWidth: .infinity)
+                    .padding(.top, 16)
+                    .background(.white)
+            } else {
+                VStack {
+                    VStack(spacing: 16) {
+                        CommonSearchBarView(
+                            isFocused: $isSearchBarFocused,
+                            searchTerm: $searchTerm, hint: "Search map"
+                        )
+
+                        HStack {
+                            NormalTextView(
+                                text: "Latest searches",
+                                multilineTextAlignment: .leading
+                            )
+                            Spacer()
+                        }
+
+                        ScrollView {
+                            LazyVGrid(columns: gridItems) {
+                                ForEach(0..<filteredSearches.count, id: \.self)
+                                {
+                                    index in
+                                    let search = filteredSearches[index]
+                                    if let firstUrl = search.imageUrls?.first {
+                                        CommonEventCardView(
+                                            title: search.name,
+                                            day: search.name,
+                                            imageUrl: firstUrl
+                                        )
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                    .padding(.horizontal, UIScreen.main.bounds.width * 0.05)
+                    Spacer()
+                }.presentationDetents([.medium, .large])
+                    .ignoresSafeArea()
+                    .frame(maxWidth: .infinity)
+                    .padding(.top, 16)
+                    .background(Color("commonBackground"))
+            }
         }
         .sheet(isPresented: $isShowingNavigationSheet) {
             VStack {
@@ -265,5 +393,5 @@ struct MapView: View {
 }
 
 #Preview {
-    MapView()
+    MapView().environmentObject(GlobalDto.shared)
 }

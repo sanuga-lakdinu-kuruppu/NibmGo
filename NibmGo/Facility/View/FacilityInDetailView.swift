@@ -65,6 +65,7 @@ struct FacilityInDetailView: View {
 
                     VStack(spacing: 16) {
                         Button {
+                            globalDto.commingFrom = Route.facility.rawValue
                             globalDto.selectedFacility = selectedFacility
                             globalDto.paths
                                 .append(

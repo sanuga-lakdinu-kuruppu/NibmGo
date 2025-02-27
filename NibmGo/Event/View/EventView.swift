@@ -3,6 +3,7 @@ import SwiftUI
 struct EventView: View {
     @State private var searchTerm: String = ""
     @State var selectedEvent: EventModel?
+    @State var isFocused = false
     private var filteredEvents: [EventModel] {
         let allEvents = EventViewModel.shared
             .getAllEvents()
@@ -28,6 +29,7 @@ struct EventView: View {
                     .padding(.top, 32)
 
                     CommonSearchBarView(
+                        isFocused: $isFocused,
                         searchTerm: $searchTerm, hint: "Search events")
                 }
                 .padding(.horizontal, UIScreen.main.bounds.width * 0.05)

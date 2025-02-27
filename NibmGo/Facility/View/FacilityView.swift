@@ -5,6 +5,7 @@ struct FacilityView: View {
     @EnvironmentObject var globalDto: GlobalDto
     @State var isShowingIndetails: Bool = false
     @State var selectedFacility: FacilityModel?
+    @State var isFocused = false
     private var filteredFacilities: [FacilityModel] {
         let allFacilities = FacilityViewModel.shared.getAllFacilities()
         if searchTerm.isEmpty {
@@ -29,6 +30,7 @@ struct FacilityView: View {
                     .padding(.top, 32)
 
                     CommonSearchBarView(
+                        isFocused: $isFocused,
                         searchTerm: $searchTerm, hint: "Search facilities")
 
                     if globalDto.role.rawValue != UserType.guest.rawValue {

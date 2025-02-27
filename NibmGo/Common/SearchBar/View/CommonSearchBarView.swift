@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CommonSearchBarView: View {
+    @Binding var isFocused: Bool
     @Binding var searchTerm: String
     var hint: String
     var body: some View {
@@ -16,21 +17,25 @@ struct CommonSearchBarView: View {
                         .foregroundColor(Color.gray)
                 }
             }
-        }.padding(.vertical, 8)
-            .padding(.horizontal, 16)
-            .frame(maxWidth: .infinity)
-            .background(Color("inputBackground"))
-            .cornerRadius(15)
+        }
+        .padding(.vertical, 8)
+        .padding(.horizontal, 16)
+        .frame(maxWidth: .infinity)
+        .background(Color("inputBackground"))
+        .cornerRadius(15)
+        .onTapGesture {
+            isFocused = true
+        }
     }
 }
 
 #Preview {
-    PreviewSearchBar()
+    //    PreviewSearchBar()
 }
 
-struct PreviewSearchBar: View {
-    @State var temp: String = "fd"
-    var body: some View {
-        CommonSearchBarView(searchTerm: $temp, hint: "fdjsalk")
-    }
-}
+//struct PreviewSearchBar: View {
+//    @State var temp: String = "fd"
+//    var body: some View {
+//        CommonSearchBarView(searchTerm: $temp, hint: "fdjsalk")
+//    }
+//}
